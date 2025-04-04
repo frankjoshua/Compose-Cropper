@@ -2,6 +2,7 @@
 
 package com.smarttoolfactory.composecropper.demo
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -196,6 +197,9 @@ private fun MainContent(
                     isCropping = false
                     crop = false
                     showDialog = true
+                },
+                onUp = {
+                    Log.d("onUp", it.toString())
                 }
             )
         }

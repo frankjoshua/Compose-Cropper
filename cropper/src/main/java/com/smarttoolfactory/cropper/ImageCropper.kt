@@ -29,6 +29,7 @@ import com.smarttoolfactory.cropper.draw.DrawingOverlay
 import com.smarttoolfactory.cropper.draw.ImageDrawCanvas
 import com.smarttoolfactory.cropper.image.ImageWithConstraints
 import com.smarttoolfactory.cropper.image.getScaledImageBitmap
+import com.smarttoolfactory.cropper.model.CropData
 import com.smarttoolfactory.cropper.model.CropOutline
 import com.smarttoolfactory.cropper.settings.CropDefaults
 import com.smarttoolfactory.cropper.settings.CropProperties
@@ -53,6 +54,7 @@ fun ImageCropper(
     onCropStart: () -> Unit,
     onCropSuccess: (ImageBitmap) -> Unit,
     onDrawGrid: (DrawScope.(rect: Rect, strokeWidth: Float, color: Color) -> Unit)? = null,
+    onUp: (CropData) -> Unit = {},
 ) {
 
     ImageWithConstraints(
@@ -153,7 +155,8 @@ fun ImageCropper(
             .size(containerWidth, containerHeight)
             .crop(
                 keys = resetKeys,
-                cropState = cropState
+                cropState = cropState,
+                onUp = onUp
             )
 
         LaunchedEffect(key1 = cropProperties) {
